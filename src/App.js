@@ -36,7 +36,6 @@ class App extends Component {
           placeholder="search monsters"
           handleChange={this.handleChange}
         />
-        {console.log(filteredMonsters)}
         <CardList monsters={filteredMonsters} />
         <button 
           className="deplecateThem" 
@@ -44,6 +43,7 @@ class App extends Component {
           .concat(monsters.map((item, idx) => {
             return {
               name : item.name,
+              email: item.email,
               id : monsters.length + idx + 1
             }
           }
