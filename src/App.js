@@ -12,7 +12,10 @@ class App extends Component {
       searchField : ''
     }
 
+  }
 
+  handleChange  = (e) => {
+    this.setState({searchField : e.target.value})
   }
 
   componentDidMount(){
@@ -28,11 +31,24 @@ class App extends Component {
     })
     return (
       <div className="App">
+        <h1>Monster Rolodex</h1>
         <SearchBox 
           placeholder="search monsters"
-          handleChange={ e => this.setState({searchField : e.target.value})}
+          handleChange={this.handleChange}
         />
+        {console.log(filteredMonsters)}
         <CardList monsters={filteredMonsters} />
+        <button 
+          className="deplecateThem" 
+          onClick= { () => this.setState({monsters: monsters
+          .concat(monsters.map((item, idx) => {
+            return {
+              name : item.name,
+              id : monsters.length + idx + 1
+            }
+          }
+          ))})}> Deplecate Them 
+        </button>
       </div>
     );
   }
